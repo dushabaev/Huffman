@@ -92,12 +92,13 @@ function decode(str, tree) {
 }
 
 function loaded() {
-    const input = document.body.children[0];
+    const input = document.getElementById("encodeText");
 
     input.oninput = function() {
         let tree = buildTree(input.value);
-        document.getElementById('result').innerHTML = encode(input.value, tree);
-
+        let encoded = encode(input.value, tree);
+        document.getElementById('encoded').innerHTML = encoded;
+        document.getElementById('decoded').innerHTML = decode(encoded, tree);
         let freqs = calculateFrequencies(input.value);
         let fKeys = Object.keys(freqs);
         let list = document.getElementById('list');
